@@ -1,0 +1,5 @@
+1 | Dave | 2 | gol1 | gol1 | .mov | 2.0
+9 | Mars | 4 | planta1 | planta | .mp4 | 3.0
+5 | Alice | 2 | juego1 | juego1 | .mov | 1.0
+1 | Dave | gol1 | .mp4 | 2.0
+00001 | Dave | Prueba | .mp4 | 3.0

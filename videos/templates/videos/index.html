@@ -1,0 +1,24 @@
+{% extends 'videos/base.html' %}
+{% load static %}
+
+{% block title %}NewTube - Inicio{% endblock %}
+
+{% block content %}
+    <div class="video-list">
+        {% for video in videos %}
+            <div class="video-item">
+                <h3><a href="{% url 'video_detail' video.id %}">{{ video.titulo }}</a></h3>
+                {% if video.archivo_video %} <video width="320" height="240" controls>
+                    <source src="{{ video.archivo_video.url }}" type="video/mp4"> 
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+                {% endif %}
+                <p>{{ video.descripcion }}</p> 
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/aplicacion.js' %}"></script>
+{% endblock %}

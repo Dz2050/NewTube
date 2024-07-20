@@ -1,0 +1,13 @@
+{% extends 'videos/base.html' %}
+{% load static %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+    <h2>Iniciar sesión</h2>
+    <form method="post" id="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar sesión</button>
+    </form>
+{% endblock %}

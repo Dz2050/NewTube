@@ -1,0 +1,42 @@
+{% extends 'videos/base.html' %}
+{% load static %}
+
+{% block title %}Resultados de búsqueda{% endblock %}
+
+{% block content %}
+    <h2>Resultados de búsqueda para "{{ query }}"</h2>
+
+    {% if videos %}
+        <div class="video-list">
+            {% for video in videos %}
+                <div class="video-item">
+                    <h3><a href="{% url 'video_detail' video.id %}">{{ video.titulo }}</a></h3>
+                    <video width="320" height="240" controls>
+                        <source src="{{ video.archivo_video.url }}" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <p>{{ video.descripcion }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+    <span class="step-links">
+        {% if videos.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ videos.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ videos.number }} of {{ videos.paginator.num_pages }}.
+        </span>
+
+        {% if videos.has_next %}
+            <a href="?page={{ videos.next_page_number }}">next</a>
+            <a href="?page={{ videos.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+{% endblock %}

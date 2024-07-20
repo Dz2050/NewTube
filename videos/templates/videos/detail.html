@@ -1,0 +1,35 @@
+{% extends 'videos/base.html' %}
+{% load static %}
+
+{% block title %}{{ video.titulo }}{% endblock %}
+
+{% block content %}
+    <div class="video-detail">
+        <h2>{{ video.titulo }}</h2>
+
+        <video width="640" height="480" controls>
+            <source src="{{ video.archivo_video.url }}" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+        </video>
+
+        <div class="video-info">
+            <p><strong>Descripción:</strong> {{ video.descripcion }}</p>
+            <p><strong>Subido por:</strong> {{ video.usuario.nombre }}</p>
+            <p><strong>Fecha de creación:</strong> {{ video.fecha_creacion }}</p>
+        </div>
+
+        <div class="comments">
+            <h3>Comentarios</h3>
+            <ul>
+                {% for comentario in video.comentarios.all %}
+                    <li>{{ comentario.usuario.nombre }}: {{ comentario.texto }}</li>
+                {% endfor %}
+            </ul>
+            <form method="post">
+                {% csrf_token %}
+                <textarea name="texto" placeholder="Escribe tu comentario"></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

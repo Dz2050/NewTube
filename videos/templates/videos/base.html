@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NewTube{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'index' %}">NewTube</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="{% url 'upload_video' %}">Subir video</a></li>
+                <li><a href="{% url 'profile' %}">Perfil</a></li>
+                <li><a href="{% url 'search' %}">Buscar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+        
+    <footer>
+        <p>&copy; 2024 NewTube</p>
+    </footer>    
+
+    {% block scripts %}
+    {% endblock %}
+
+    <script src="{% static 'js/aplicacion.js' %}"></script>
+</body>
+</html>
